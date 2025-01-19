@@ -21,6 +21,7 @@
         }
         #container img{
           width: 200px;
+          height: 200px;
         }
         
     
@@ -42,18 +43,22 @@
     ajaxApi.onreadystatechange=(()=>{
         if(ajaxApi.readyState==4){
             if(ajaxApi.status>=200&&ajaxApi.status<=300){
-              const datas=JSON.parse(ajaxApi.responseText) 
-             
-              datas.map((a)=>{
-               let images=`<img src=${a.image}></img>`
-
-               container.innerHTML+=images
-
-
-              })
-
+               let datas =JSON.parse(ajaxApi.responseText)
+               displayImages(datas)
+              
             }
         }
     })
+
+    const displayImages=(datas)=>{
+        datas.forEach((a)=>{
+            let images=`<img src=${a.image}></img>`
+            container.innerHTML+=images
+         
+        })
+      
+    }
+
+   
 </script>
 </html>
